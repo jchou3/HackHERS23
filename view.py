@@ -1,7 +1,8 @@
 from flask import Flask, render_template, request, redirect
+# from tkinter import Tk,Label
+from pynput import mouse
 
 app = Flask(__name__)
-
 
 @app.route("/")
 def home(): 
