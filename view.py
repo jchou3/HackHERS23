@@ -14,13 +14,14 @@ def on_press(key):
     print("Key noticed")
     check_key(key)
 
+
 def on_release(key):
     #print('{0} release'.format(
        # key))
     # if key == Key.esc:
         # Stop listener
         print("released")
-        return False
+
 
 def check_key(key):
     if key == keyboard.Key.space: 
@@ -35,9 +36,8 @@ def keyboardListener():
     
 @app.route("/")
 def home(): 
-    # thr = Thread(target=keyboardListener, args=[])
-    # thr.start()
-    keyboardListener()
+    thr = Thread(target=keyboardListener, args=[])
+    thr.start() 
     return render_template("view.html")
 
 if __name__ == "__main__":
