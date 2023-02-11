@@ -1,0 +1,32 @@
+WO YEARS AGO,  Microsoft  president Brad Smith told a US 
+congressional  hearing  that tech companies like his own had not been 
+sufficiently paying media companies for the news content that helps fuel 
+search engines l ike Bing and Google.   
+“What we’re talking about here is far bigger than us,”  he said , testifying 
+alongside news executives.  “Let’s hope that, if a ce ntury from now 
+people are not using iPhones or laptops or anything that we have today, 
+journalism itself is still alive and well. Because our democracy depends 
+on it.” Smith said tech companies should do more and that Microsoft 
+was committed to continuing "healthy revenue -sharing" with news 
+publishers, including licensing articles for  Microsoft news apps . 
+Yet, Microsoft this week began testing a  new chatbot interface for 
+Bing that can sometimes provide a way to sidestep news websites’ 
+paywalls, providing glossy conversational answers that draw on media 
+content. As  Google and others also prepare chatbots , their potential to 
+sap traffic from media companies could add a new twist to their conflicts 
+with tech platforms over how content appears on search engines and 
+social feeds.  
+When WIRED asked the Bing chatbot about the  best dog 
+beds  according to  The New York Times  product review site Wirecutter, 
+which is behind a metered paywall, it quickly reeled off th e publication’s 
+top three picks, with brief descriptions for each. “This bed is cozy, 
+durable, easy to wash, and comes in various sizes and colors,” it said of 
+one. 
+Citations at the end of the bot’s response credited Wirecutter’s reviews 
+but also a series of websites that appeared to use Wirecutter’s name to 
+attract searches and cash in on affiliate links.  The Times  declined to 
+comment.  
+Bing’s bot, based on technology behind  OpenAI’s chatbot sensation 
+ChatGP T,  also neatly summarized a  Wall Street Journal  column  on, 
+well, ChatGPT, even though the newspaper's content is generally 
+behind  a paywall. (The tool did not appear to directly plagiarize any of 
