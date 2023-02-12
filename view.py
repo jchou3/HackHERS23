@@ -7,6 +7,12 @@ from threading import Thread
 from time import sleep
 import speech_recognition as sr
 import pyttsx3
+import pdftotxt as ptt
+from bs4 import BeautifulSoup as s
+import requests
+import os
+from werkzeug.utils import secure_filename
+
 
 synthesizer = pyttsx3.init()
 
@@ -97,6 +103,19 @@ def keyboardListener():
 def home():
     thr = Thread(target=keyboardListener, args=[])
     thr.start() 
+    return render_template("view.html")
+
+@app.route("/upload_file", methods = ['GET'])
+def upload_file():
+    print("hello")
+    #file = request.files('filename')
+    # file_path = os.path.join(app.config['UPLOAD_FOLDER'], secure_filename(f.filename))
+    # f = request.files['file']
+    # f.save(file_path)
+    # print(file)
+    # print(os.path.exists(file))
+    selectedFile = view.getElementById('file').files[0]
+    ptt.read_and_interpret_pdf(selectedFile)
     return render_template("view.html")
 
 if __name__ == "__main__":
