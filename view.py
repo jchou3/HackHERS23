@@ -79,7 +79,10 @@ def on_press(key):
                     synthesizer.stop()
                     
             except:
-                print("An exception occurred")
+                synthesizer.say("Unable to find article. Please try again") 
+                synthesizer.runAndWait() 
+                synthesizer.stop()
+                
     elif key == keyboard.Key.shift:
         synthesizer.say("Welcome. Please press the space bar to begin request. To read a summary, say read news or read research, followed by article name. To search for articles, say search news or search research, followed by topic. To repeat these instructions, press the shift key.") 
         synthesizer.runAndWait() 
