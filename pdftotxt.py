@@ -1,6 +1,4 @@
 import PyPDF2 as p
-from PyDictionary import PyDictionary
-dictionary = PyDictionary()
 
 news_article = False
 research_article = False
@@ -30,12 +28,12 @@ title = ''
 
 if research_article:
     split = text.partition("Abstract")
-    split2 = split.split(" ")
+    split2 = split[0].split(" ")
     for i in range(len(split2)):
-        if  dictionary.meaning(split2[i],True) is None:
-            break
-        else: 
+        if  isword:
             title += split2[i]
+        else: 
+            break
     #split = text.partition("\n")
     #title = split[0]
     print(title)
