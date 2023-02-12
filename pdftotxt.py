@@ -1,6 +1,7 @@
 import PyPDF2 as p
 import nlp as n
 import os
+#import numpy as nump
 
 
 
@@ -57,7 +58,7 @@ def read_and_interpret_pdf(pdf):
         summary = n.summarize(text)
         print(summary)
 
-
+    return [title, summary, topic]
 
 
 

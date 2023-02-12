@@ -7,8 +7,9 @@ from threading import Thread
 from time import sleep
 import speech_recognition as sr
 import pyttsx3
+import sqlite3
 import pdftotxt as ptt
-from bs4 import BeautifulSoup as s
+#from bs4 import BeautifulSoup as s
 import requests
 import os
 import sqlite3
@@ -27,7 +28,7 @@ synthesizer = pyttsx3.init()
 
 
 rate = synthesizer.getProperty('rate')
-synthesizer.setProperty('rate', 160)
+synthesizer.setProperty('rate', 175)
 
 app = Flask(__name__)
 r = sr.Recognizer()
@@ -59,7 +60,6 @@ def find_words_after_search(s):
     return None, None
 
 def on_press(key):
-
     if key == keyboard.Key.space:
         with sr.Microphone() as source:
             # read the audio data from the default microphone
@@ -87,13 +87,15 @@ def on_press(key):
                     synthesizer.stop()
                     
             except:
-                print("An exception occurred")
+                synthesizer.say("Unable to find article. Please try again") 
+                synthesizer.runAndWait() 
+                synthesizer.stop()
+                
     elif key == keyboard.Key.shift:
         synthesizer.say("Welcome. Please press the space bar to begin request. To read a summary, say read news or read research, followed by article name. To search for articles, say search news or search research, followed by topic. To repeat these instructions, press the shift key.") 
         synthesizer.runAndWait() 
         synthesizer.stop()
     
-                
 def on_release(key):
     #print('{0} release'.for8mat(
        # key))
@@ -181,5 +183,5 @@ if __name__ == "__main__":
 
     app.run(debug=True, port=8000)
 
-def query(keyWords):
-    return 1
+
+

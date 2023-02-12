@@ -22,6 +22,7 @@
                 </div>
             </div>
 
+        <!-- <form action="/action_page.php"> --> 
             <div class="submit">
                 <header>Please Upload a File and Click Submit:</header>
                  <form action="/action_page.php">                    
@@ -34,49 +35,7 @@
                     <!-- <a href="{{ url_for('static',filename=path)}}">
                         <button class="btn" name = submit>Submit</button>
                     </a> -->
-                    <script>
-                        $(document).ready(function() {
-                            console.log("THIS IS RUNNING")
-
-    $('[type=file]').change(function() {
-        if (!("files" in this)) {
-            alert("File reading not supported in this browser");
-        }
-        var file = this.files && this.files[0];
-        if (!file) {
-            return;
-        }
-        var fileReader = new FileReader();
-        fileReader.onload = function(e) {
-            var text = e.target.result;
-        };
-        text = fileReader.readAsText(this.files[0]);
-        console.log(text)
-    });
-});
-
-
-                       /* 
-
-                       const inpFile = document.getElementById("inpFile");
-                        const btnSubmit = document.getElementById("btnSubmit");
-                        var text = '';
-                        console.log("wowo");
-                        btnSubmit.addEventListener("click", () => {
-                            const formData = new FormData();
-                            formData.append("pdfFile", inpFile.files[0]);
-                            fetch("/extract-text", {
-                                method: "post", 
-                                body:formData
-                            }).then(response => {
-                                return response.text();
-                            }).then(extractedText => {
-                                text = extractedText;
-                            });
-                        });
-
-                        console.log(text);  */
-                    </script>
+                   
                 
                 
                 </form> 
@@ -197,6 +156,21 @@
 
             </div>
 
+
+    <table>
+        <tr>
+            <th>Title</th>
+            <th>Topic</th>
+            <th>Summary</th>
+        </tr>
+        {% for i in res %}
+            <tr>
+                <th>{{i[1]}}</th>
+                <th>{{i[2]}}</th>
+                <th>{{i[3]}}</th>
+            </tr>
+        {% endfor %}
+    </table>
     
     </body>
 </html>
