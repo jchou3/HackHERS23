@@ -9,16 +9,15 @@ crsr = connection.cursor()
 # are no errors
 print("Connected to the database")
  
-# sql_command = """CREATE TABLE `article` (
-#   `index` INT NOT NULL,
-#   `Title` VARCHAR(100) NOT NULL,
-#   `Summary` VARCHAR(1000) NOT NULL,
-#   `Topic` VARCHAR(50) NOT NULL,
-#   PRIMARY KEY (`index`))"""
+sql_command = """CREATE TABLE `article` (
+  `Title` VARCHAR(100) NOT NULL,
+  `Summary` VARCHAR(1000) NOT NULL,
+  `Topic` VARCHAR(50) NOT NULL,
+  PRIMARY KEY (`Title`))"""
 
-sql_command2 = '''INSERT INTO article('index', 'Summary', 'Topic') VALUES(?, ?, ?)'''
-values = 3, 'testing', 'tester'
-#crsr.execute(sql_command)
+sql_command2 = '''INSERT INTO article VALUES(?, ?, ?)'''
+values = 'OWKR', 'testing', 'tester'
+crsr.execute(sql_command)
 crsr.execute(sql_command2, values)
 #print(crsr.fetchall())
 #print(sqlite3.version)
