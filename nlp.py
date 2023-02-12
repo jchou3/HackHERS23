@@ -32,3 +32,11 @@ def summarize(content):
         truncate="START",
         max_tokens = 350)
     return response.generations[0].text
+
+def get_title(blurb):
+    prompt = blurb + "Title: "
+    response = co.generate(
+        model = "ef167f8e-a5f8-4c50-988a-fa6937ef7338-ft",
+        prompt = prompt
+    )
+    return response
