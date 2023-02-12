@@ -2,4 +2,8 @@ pyttsx3
 SpeechRecognition pydub
 pyaudio
 pandas
-
+cohere
+Flask==2.2.2
+pycryptodome==3.17
+pynput
+pyPDF2
