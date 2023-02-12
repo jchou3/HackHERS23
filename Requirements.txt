@@ -7,3 +7,4 @@ Flask==2.2.2
 pycryptodome==3.17
 pynput
 pyPDF2
+sqlite3

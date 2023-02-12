@@ -3,14 +3,24 @@
     <head>
         <title> unnamed proj. </title>
         <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+        <!-- <link rel="stylesheet" type="text/css" href="../static/styles.css"> -->
+
     </head>
     <body>
             <div class="welcome">
                 <h1>Welcome to Unnamed Project</h1>
-                <h1>Welcome to Unnamed Project</h1>
             </div>
-    <center>
-            <p><font size="+2">Please Upload a File and Click Submit:</font></p>
+            <div class="waveWrapper waveAnimation">
+                <div class="waveWrapperInner bgTop">
+                  <div class="wave waveTop" style="background-image: url('http://front-end-noobs.com/jecko/img/wave-top.png')"></div>
+                </div>
+                <div class="waveWrapperInner bgMiddle">
+                  <div class="wave waveMiddle" style="background-image: url('http://front-end-noobs.com/jecko/img/wave-mid.png')"></div>
+                </div>
+                <div class="waveWrapperInner bgBottom">
+                  <div class="wave waveBottom" style="background-image: url('http://front-end-noobs.com/jecko/img/wave-bot.png')"></div>
+                </div>
+            </div>
 
         <!-- <form action="/action_page.php"> -->
         <form action="/action_page.php" method = "get">
@@ -36,14 +46,152 @@
             });
 
             </script>    
+            <div class="submit">
+                <header>Please Upload a File and Click Submit:</header>
+                <!-- <form action="/action_page.php"> -->
+                <!-- <form action="/upload_file" method = "get"> -->
 
-          
-           
-        </form>
-        
-         
-    </center>
+                    <input type="file"  id="inpFile" name="file" value = 'files'>
+                    <input type="submit" id="submit_button" name = "submit" value = "submit">
+                    <script>
+                        const inpFile = document.getElementById("inpFile");
+                        const btnSubmit = document.getElementById("btnSubmit");
+                        var text = '';
+                        console.log("wowo");
+                        btnSubmit.addEventListener("click", () => {
+                            const formData = new FormData();
+                            formData.append("pdfFile", inpFile.files[0]);
+                            fetch("/extract-text", {
+                                method: "post", 
+                                body:formData
+                            }).then(response => {
+                                return response.text();
+                            }).then(extractedText => {
+                                text = extractedText;
+                            });
+                        });
 
+                        console.log(text);
+                    </script>
+                
+                
+                <!-- </form> -->
+            </div>
+            
+            <div class="data">
+                <h1>Database</h1>
+            </div>
+
+            <div class="datatable">
+                
+                <table id="myTable">
+                    <thead>
+                        <tr class="filters">
+                            <!-- 1, 3, 2, 4 -->
+                            <th style="width: 30vw"><input type="text" id="titleInput" onkeyup="myTitle()" placeholder="Search Title"></th> 
+                            <th style = "width: 40vw"><input type="text" id="sumInput" onkeyup="mySummaries()" placeholder="Summary"></th>
+                            <th style = "width: 15vw"><input type="text" id = "topicInput" onkeyup="myTopic()" placeholder="Search Topic"></th>
+                            <th style = "width: 15vw"><input type="text" id = "typeInput" onkeyup="myText()" placeholder="Search Type"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in data %}
+                            <tr>
+                                <td >{{item[1]}}</td>
+                                <td >{{item[3]|truncate(150, False)}}</td>
+                                <td >{{item[2]}}</td>
+                                <td >{{item[4]}}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+
+                <script>
+                    function myTitle() {
+                        var title_Input, title_filter,  table, tr, title_d, i, txtValue;
+                        title_Input = document.getElementById("titleInput");
+                        title_filter = title_Input.value.toUpperCase();
+                        table = document.getElementById("myTable");
+                        tr = table.getElementsByTagName("tr");
+                        for (i = 0; i < tr.length; i++) {
+                            title_d = tr[i].getElementsByTagName("td")[0];
+
+                            if (title_d) {
+                                txtValue = title_d.textContent || title_d.innerText;
+                                if (txtValue.toUpperCase().indexOf(title_filter) > -1) {
+                                    tr[i].style.display = "";
+                                }
+                                else{
+                                    tr[i].style.display = "none";
+                                }
+                            }
+                        }
+                    }
+
+                    function mySummaries() {
+                        var summary_Input, sum_filter,  table, tr, sum_d, i, txtValue;
+                        summary_Input = document.getElementById("sumInput");
+                        sum_filter = summary_Input.value.toUpperCase();
+                        table = document.getElementById("myTable");
+                        tr = table.getElementsByTagName("tr");
+                        for (i = 0; i < tr.length; i++) {
+                            sum_d = tr[i].getElementsByTagName("td")[1];
+
+                            if (sum_d) {
+                                txtValue = sum_d.textContent || sum_d.innerText;
+                                if (txtValue.toUpperCase().indexOf(sum_filter) > -1) {
+                                    tr[i].style.display = "";
+                                }
+                                else{
+                                    tr[i].style.display = "none";
+                                }
+                            }
+                        }
+                    }
+
+
+                    function myTopic() {
+                        var topic_Input, topic_filter, type_filter, table, tr, topic_d, i, txtValue;
+                        topic_Input = document.getElementById("topicInput");
+                        topic_filter = topic_Input.value.toUpperCase();
+                        table = document.getElementById("myTable");
+                        tr = table.getElementsByTagName("tr");
+                        for (i = 0; i < tr.length; i++) {
+                            topic_d = tr[i].getElementsByTagName("td")[2];
+                            if (topic_d) {
+                                txtValue = topic_d.textContent || topic_d.innerText;
+                                if (txtValue.toUpperCase().indexOf(topic_filter) > -1) {
+                                    tr[i].style.display = "";
+                                }
+                                else{
+                                    tr[i].style.display = "none";
+                                }
+                            }
+                        }
+                    }
+
+                    function myType() {
+                        var type_Input, type_filter, table, tr, type_d, i, txtValue;
+                        type_Input = document.getElementById("typeInput");
+                        type_filter = type_Input.value.toUpperCase();
+                        table = document.getElementById("myTable");
+                        tr = table.getElementsByTagName("tr");
+                        for (i = 0; i < tr.length; i++) {
+                            type_d = tr[i].getElementsByTagName("td")[3];
+                            if (type_d) {
+                                txtValue = type_d.textContent || type_d.innerText;
+                                if (txtValue.toUpperCase().indexOf(title_filter) > -1) {
+                                    tr[i].style.display = "";
+                                }
+                                else{
+                                    tr[i].style.display = "none";
+                                }
+                            }
+                        }
+                    }
+                    </script>
+
+            </div>
 
 
     <table>
