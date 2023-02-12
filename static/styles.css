@@ -7,10 +7,65 @@
 
 body {
     display: flex;
-    background: rgb(24,128,156);
-    background: linear-gradient(0deg, rgba(24,128,156,1) 0%, rgba(159,211,231,1) 100%);
+    background: rgb(255, 255, 255);
+    min-height: 1500px;
 }
 
+
+.datatable {
+    position: absolute;
+    top: 150%;
+    width: 90wv;
+}
+
+.data h1 {
+    font-size: 5vw;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    color:rgb(75, 180, 206)
+}
+
+.data {
+    position: absolute;
+    width: 100vw;
+    top: 120%;
+    left: 100%;
+    transform: translate(-50%, -50%);
+    z-index: 50;
+}
+
+#myTable {
+    border-collapse: collapse;
+    width: 98%;
+    color:rgb(75, 180, 206);
+    font-family: monospace;
+    font-size: 16px;
+    text-align: left;
+}
+
+#titleInput, #sumInput, #topicInput, #typeInput {
+    width: 100%;
+    padding: 12px 20px 12px 40px;
+    border-color:rgb(75, 180, 206);
+    margin-bottom: 12px;
+}
+
+th{
+    padding-bottom: 24px;
+}
+
+tr {
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+
+tr:nth-child(even) {
+    background-color:rgb(214, 229, 233)
+}
+
+td{
+    padding: 16px;
+}
 
 .submit {
     z-index:50;

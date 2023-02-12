@@ -22,40 +22,130 @@
                 </div>
             </div>
 
-    <div class="submit">
-        <p><font size="+2">Please Upload a File and Click Submit:</font></p>
-        <!-- <form action="/action_page.php"> -->
-        <!-- <form action="/upload_file" method = "get"> -->
+            <div class="submit">
+                <p><font size="+2">Please Upload a File and Click Submit:</font></p>
+                <!-- <form action="/action_page.php"> -->
+                <!-- <form action="/upload_file" method = "get"> -->
 
-            <input type="file"  id="inpFile" name="file" value = 'files'>
-            <input type="submit" name = "submit" value = "submit">
-            <script>
-                const inpFile = document.getElementById("inpFile");
-                const btnSubmit = document.getElementById("btnSubmit");
-                var text = '';
-                console.log("wowo");
-                btnSubmit.addEventListener("click", () => {
-                    const formData = new FormData();
-                    formData.append("pdfFile", inpFile.files[0]);
-                    fetch("/extract-text", {
-                        method: "post", 
-                        body:formData
-                    }).then(response => {
-                        return response.text();
-                    }).then(extractedText => {
-                        text = extractedText;
-                    });
-                });
+                    <input type="file"  id="inpFile" name="file" value = 'files'>
+                    <input type="submit" name = "submit" value = "submit">
+                    <script>
+                        const inpFile = document.getElementById("inpFile");
+                        const btnSubmit = document.getElementById("btnSubmit");
+                        var text = '';
+                        console.log("wowo");
+                        btnSubmit.addEventListener("click", () => {
+                            const formData = new FormData();
+                            formData.append("pdfFile", inpFile.files[0]);
+                            fetch("/extract-text", {
+                                method: "post", 
+                                body:formData
+                            }).then(response => {
+                                return response.text();
+                            }).then(extractedText => {
+                                text = extractedText;
+                            });
+                        });
 
-                console.log(text);
-            </script>
-          
-           
-        <!-- </form> -->
-        
-         
-    </center>
+                        console.log(text);
+                    </script>
+                
+                
+                <!-- </form> -->
+            </div>
+            
+            <div class="data">
+                <h1>Database</h1>
+            </div>
 
+            <div class="datatable">
+                
+                <table id="myTable">
+                    <thead>
+                        <tr class="filters">
+                            <!-- 1, 3, 2, 4 -->
+                            <th style="width: 30vw"><input type="text" id="titleInput" onkeyup="myTitle()" placeholder="Search Title"></th> 
+                            <th style = "width: 40vw"><input type="text" id="sumInput" placeholder="Summary" disabled></th>
+                            <th style = "width: 15vw"><input type="text" id = "topicInput" onkeyup="myTopic()" placeholder="Search Topic"></th>
+                            <th style = "width: 15vw"><input type="text" id = "typeInput" onkeyup="myText()" placeholder="Search Type"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in data %}
+                            <tr>
+                                <td >{{item[1]}}</td>
+                                <td >{{item[3]|truncate(100, False)}}</td>
+                                <td >{{item[2]}}</td>
+                                <td >{{item[4]}}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+
+                <script>
+                    function myTitle() {
+                        var title_Input, title_filter,  table, tr, title_d, i, txtValue;
+                        title_Input = document.getElementById("titleInput");
+                        title_filter = title_Input.value.toUpperCase();
+                        table = document.getElementById("myTable");
+                        tr = table.getElementsByTagName("tr");
+                        for (i = 0; i < tr.length; i++) {
+                            title_d = tr[i].getElementsByTagName("td")[0];
+
+                            if (title_d) {
+                                txtValue = title_d.textContent || title_d.innerText;
+                                if (txtValue.toUpperCase().indexOf(title_filter) > -1) {
+                                    tr[i].style.display = "";
+                                }
+                                else{
+                                    tr[i].style.display = "none";
+                                }
+                            }
+                        }
+                    }
+
+                    function myTopic() {
+                        var topic_Input, topic_filter, type_filter, table, tr, topic_d, i, txtValue;
+                        topic_Input = document.getElementById("topicInput");
+                        topic_filter = topic_Input.value.toUpperCase();
+                        table = document.getElementById("myTable");
+                        tr = table.getElementsByTagName("tr");
+                        for (i = 0; i < tr.length; i++) {
+                            topic_d = tr[i].getElementsByTagName("td")[2];
+                            if (topic_d) {
+                                txtValue = topic_d.textContent || topic_d.innerText;
+                                if (txtValue.toUpperCase().indexOf(topic_filter) > -1) {
+                                    tr[i].style.display = "";
+                                }
+                                else{
+                                    tr[i].style.display = "none";
+                                }
+                            }
+                        }
+                    }
+
+                    function myType() {
+                        var type_Input, type_filter, table, tr, type_d, i, txtValue;
+                        type_Input = document.getElementById("typeInput");
+                        type_filter = type_Input.value.toUpperCase();
+                        table = document.getElementById("myTable");
+                        tr = table.getElementsByTagName("tr");
+                        for (i = 0; i < tr.length; i++) {
+                            type_d = tr[i].getElementsByTagName("td")[3];
+                            if (type_d) {
+                                txtValue = type_d.textContent || type_d.innerText;
+                                if (txtValue.toUpperCase().indexOf(title_filter) > -1) {
+                                    tr[i].style.display = "";
+                                }
+                                else{
+                                    tr[i].style.display = "none";
+                                }
+                            }
+                        }
+                    }
+                    </script>
+
+            </div>
 
     
     </body>

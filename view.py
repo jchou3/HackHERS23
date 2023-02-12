@@ -11,10 +11,12 @@ import pdftotxt as ptt
 from bs4 import BeautifulSoup as s
 import requests
 import os
+import sqlite3
 from werkzeug.utils import secure_filename
 
 
 synthesizer = pyttsx3.init()
+
 
 rate = synthesizer.getProperty('rate')
 synthesizer.setProperty('rate', 160)
@@ -113,7 +115,11 @@ def keyboardListener():
 def home():
     thr = Thread(target=keyboardListener, args=[])
     thr.start() 
-    return render_template("view.html")
+    connection = sqlite3.connect("databases/data.db")
+    cur = connection.cursor()
+    cur.execute("SELECT * FROM News")
+    data = cur.fetchall()
+    return render_template("view.html", data = data)
 
 @app.route("/upload_file", methods = ['GET'])
 def upload_file():
