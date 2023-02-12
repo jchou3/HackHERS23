@@ -24,13 +24,41 @@
 
             <div class="submit">
                 <header>Please Upload a File and Click Submit:</header>
-                <!-- <form action="/action_page.php"> -->
-                <!-- <form action="/upload_file" method = "get"> -->
+                 <form action="/action_page.php">                    
+                    <!-- <input type="file"  input id="inpFile" name="file" value = 'files'> -->
+                    </form>
+                <form enctype="multipart/form-data" action="/upload_file" method = "post">
+                    <input type="file"  input id="file" name="file" value = 'files'>
 
-                    <input type="file"  id="inpFile" name="file" value = 'files'>
                     <input type="submit" id="submit_button" name = "submit" value = "submit">
+                    <!-- <a href="{{ url_for('static',filename=path)}}">
+                        <button class="btn" name = submit>Submit</button>
+                    </a> -->
                     <script>
-                        const inpFile = document.getElementById("inpFile");
+                        $(document).ready(function() {
+                            console.log("THIS IS RUNNING")
+
+    $('[type=file]').change(function() {
+        if (!("files" in this)) {
+            alert("File reading not supported in this browser");
+        }
+        var file = this.files && this.files[0];
+        if (!file) {
+            return;
+        }
+        var fileReader = new FileReader();
+        fileReader.onload = function(e) {
+            var text = e.target.result;
+        };
+        text = fileReader.readAsText(this.files[0]);
+        console.log(text)
+    });
+});
+
+
+                       /* 
+
+                       const inpFile = document.getElementById("inpFile");
                         const btnSubmit = document.getElementById("btnSubmit");
                         var text = '';
                         console.log("wowo");
@@ -47,11 +75,11 @@
                             });
                         });
 
-                        console.log(text);
+                        console.log(text);  */
                     </script>
                 
                 
-                <!-- </form> -->
+                </form> 
             </div>
             
             <div class="data">

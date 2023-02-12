@@ -14,6 +14,14 @@ import os
 import sqlite3
 from werkzeug.utils import secure_filename
 
+import os
+from flask import Flask, flash, request, redirect, url_for
+from werkzeug.utils import secure_filename
+
+UPLOAD_FOLDER = 'uploads'
+ALLOWED_EXTENSIONS = {'txt', 'pdf'}
+
+
 
 synthesizer = pyttsx3.init()
 
@@ -111,19 +119,66 @@ def home():
     data = cur.fetchall()
     return render_template("view.html", data = data)
 
-@app.route("/upload_file", methods = ['GET'])
+
+def allowed_file(filename):
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+
+@app.route("/upload_file", methods = ['GET', 'POST'])
 def upload_file():
-    print("hello")
-    #file = request.files('filename')
-    # file_path = os.path.join(app.config['UPLOAD_FOLDER'], secure_filename(f.filename))
-    # f = request.files['file']
-    # f.save(file_path)
-    # print(file)
-    # print(os.path.exists(file))
-    
-    return render_template("view.html")
+    print("ugh")
+    if request.method == 'POST':
+        print("posint")
+        # check if the post request has the file part
+        if 'file' not in request.files:
+            print("*")
+            flash('No file part')
+            return redirect(request.url)
+        file = request.files['file']
+        # if user does not select file, browser also
+        # submit an empty part without filename
+        if file.filename == '':
+            print("*")
+            flash('No selected file')
+            return redirect(request.url)
+        if file and allowed_file(file.filename):
+            print("*")
+            filename = secure_filename(file.filename)
+            path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+            file.save(path)
+            # return redirect(url_for('uploaded_file',
+            #                         filename=filename))
+            path = find_file(filename, "uploads")
+            ptt.read_and_interpret_pdf(path[0])
+            return redirect('http://127.0.0.1:8000')
+        
+
+        #print(file)
+    return ''
+
+from flask import send_from_directory
+
+def find_file(filename, search_path):
+   result = []
+
+# Wlaking top-down from the root
+   for root, dir, files in os.walk(search_path):
+      if filename in files:
+         result.append(os.path.join(root, filename))
+   print(result)
+   return result
+
+
+@app.route('/uploads/<filename>')
+def uploaded_file(filename):
+    return send_from_directory(app.config['UPLOAD_FOLDER'],
+                               filename)
 
 if __name__ == "__main__":
+    app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+    app.secret_key = 'HACKHERS'
+
     app.run(debug=True, port=8000)
 
 def query(keyWords):

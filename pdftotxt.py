@@ -5,18 +5,19 @@ import os
 
 
 def read_and_interpret_pdf(pdf):
+    print(pdf)
     news_article = False
     research_article = False
-    pdf = os.path.dirname(os.path.abspath(pdf))
-    pdf = p.PdfReader(open(pdf, 'rb'), strict = False)
-    numPages = len(pdfReader.pages)
+    #pdf = os.path.dirname(os.path.abspath(pdf))
+    pdfreader = p.PdfReader(open(pdf, 'rb'), strict = False)
+    numPages = len(pdfreader.pages)
     p.PdfWriter().remove_images()
 
     text = ''
 
     for i in range(numPages):
         
-        pageobj = pdfReader.pages[i]
+        pageobj = pdfreader.pages[i]
         new_text = pageobj.extract_text()
         text+=new_text 
 
@@ -38,12 +39,8 @@ def read_and_interpret_pdf(pdf):
         split3 = split[2].partition("Introduction\n")
         summary = split3[0]
         
-        # for i in range(len(split2)):
-        #     if  isword:
-        #         title += split2[i]
-        #     else: 
-        #         break
-        split = text.partition("\n")
+        title = n.get_title(text)
+        split = title.partition("\n")
         title = split[0]
         topic = n.classify_research(title)
         print(title)
