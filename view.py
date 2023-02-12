@@ -1,5 +1,4 @@
 from flask import Flask, render_template, request, redirect
-# from tkinter import Tk,Label
 from pynput import mouse
 from pynput import keyboard
 from pynput.keyboard import Key, Listener
@@ -9,18 +8,14 @@ from time import sleep
 app = Flask(__name__)
 
 def on_press(key):
-    #print('{0} pressed'.format(
-        #key))
+
     print("Key noticed")
     check_key(key)
 
 
 def on_release(key):
-    #print('{0} release'.format(
-       # key))
-    # if key == Key.esc:
-        # Stop listener
-        print("released")
+
+    print("released")
 
 
 def check_key(key):
