@@ -1,4 +1,5 @@
 import PyPDF2 as p
+import nlp as n
 
 news_article = False
 research_article = False
@@ -26,26 +27,34 @@ print(news_article)
 
 title = ''
 summary = ''
+topic = ''
 if research_article:
     split = text.partition("Abstract\n")
     split2 = split[0].split(" ")
     split3 = split[2].partition("Introduction\n")
     summary = split3[0]
-    print(summary)
-    for i in range(len(split2)):
-        if  isword:
-            title += split2[i]
-        else: 
-            break
+    
+    # for i in range(len(split2)):
+    #     if  isword:
+    #         title += split2[i]
+    #     else: 
+    #         break
     split = text.partition("\n")
     title = split[0]
+    topic = n.classify_research(title)
     print(title)
+    print(topic)
+    print(summary)
 
 if news_article: 
     split1 = text.partition('M')
     split2 = split1[2].partition("\n")
     title = split2[0]
     print(title)
+    topic = n.classify_article(title)
+    print(topic)
+    summary = n.summarize(text)
+    print(summary)
 
 
 
