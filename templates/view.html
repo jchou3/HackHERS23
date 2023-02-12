@@ -2,11 +2,15 @@
 <html>
     <head>
         <title> unnamed proj. </title>
-        <center><h1 style=font-size:56px>WELCOME TO unnamed <h1></center>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
     </head>
-    <body style="background-color:lightblue">
-        <center>
-        <p><font size="+2">Please Upload a File and Click Submit:</font></p>
+    <body>
+            <div class="welcome">
+                <h1>Welcome to Unnamed Project</h1>
+                <h1>Welcome to Unnamed Project</h1>
+            </div>
+    <center>
+            <p><font size="+2">Please Upload a File and Click Submit:</font></p>
 
         <!-- <form action="/action_page.php"> -->
         <form action="/action_page.php" method = "get">
