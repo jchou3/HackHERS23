@@ -116,7 +116,7 @@ def keyboardListener():
 def home():
     thr = Thread(target=keyboardListener, args=[])
     thr.start() 
-    connection = sqlite3.connect("databases/data.db")
+    connection = sqlite3.connect("data.db")
     cur = connection.cursor()
     cur.execute("SELECT * FROM News")
     data = cur.fetchall()
@@ -154,7 +154,13 @@ def upload_file():
             #                         filename=filename))
             path = find_file(filename, "uploads")
             info = ptt.read_and_interpret_pdf(path[0])
-            addArticle(info)
+            connection = sqlite3.connect("data.db")
+            crsr = connection.cursor()
+            sql_command2 = '''INSERT INTO article VALUES(?, ?, ?)'''
+            values = info[0], info[1], info[2]
+            crsr.execute(sql_command2, values)
+            connection.commit()
+            connection.close()
             return redirect('http://127.0.0.1:8000')
         
 

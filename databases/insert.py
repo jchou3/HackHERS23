@@ -31,10 +31,10 @@ data.to_sql(
 #     print()
     #crsr.execute(
 
-crsr.execute('''SELECT * FROM News
-                ''')
+# crsr.execute('''SELECT * FROM News
+#                 ''')
 
-print(crsr.fetchone())
+# print(crsr.fetchone())
 
 connection.commit()
 
