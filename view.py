@@ -52,7 +52,6 @@ def find_words_after_search(s):
 
 def on_press(key):
 
-
     if key == keyboard.Key.space:
         with sr.Microphone() as source:
             # read the audio data from the default microphone
@@ -82,17 +81,8 @@ def on_press(key):
             except:
                 print("An exception occurred")
     elif key == keyboard.Key.shift:
-        synthesizer.say("Welcome. Please press the space bar to begin request.") 
+        synthesizer.say("Welcome. Please press the space bar to begin request. To read a summary, say read news or read research, followed by article name. To search for articles, say search news or search research, followed by topic. To repeat these instructions, press the shift key.") 
         synthesizer.runAndWait() 
-        time.sleep(1)
-        synthesizer.say("To read a summary, Say read news or read research followed by article name") 
-        synthesizer.runAndWait()
-        time.sleep(1) 
-        synthesizer.say("To search for articles, say search news or search research, followed by topic") 
-        synthesizer.runAndWait() 
-        time.sleep(1)
-        synthesizer.say("To repeat these instructions, press the shift key")
-        synthesizer.runAndWait()
         synthesizer.stop()
     
                 

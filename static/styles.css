@@ -36,7 +36,7 @@ body {
 
 #myTable {
     border-collapse: collapse;
-    width: 98%;
+    width: 99%;
     color:rgb(75, 180, 206);
     font-family: monospace;
     font-size: 16px;
@@ -173,4 +173,40 @@ td{
 }
 .waveAnimation .waveBottom {
     animation: move_wave 15s linear infinite;
+}
+
+
+.submit {
+    border: 10px dashed #bfdae2;
+    height: 250px;
+    width: 275px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    position: absolute;
+    top: 40%;
+    left: 40%;
+
+}
+
+header {
+    font-size: 24px;
+    font-weight: 500;
+    color: #ffffff;
+    text-align: center;
+}
+
+#inpFile, #submit_button {
+    padding: 10px 10px;
+    font-size: 10px;
+    font-weight: 500;
+    border: none;
+    outline: none;
+    background: #fff;
+    color: #2c52b9;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 12px;
 }
