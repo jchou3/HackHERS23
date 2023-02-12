@@ -114,7 +114,7 @@ def home():
     # connection.commit()
     # connection.close()
     # return render_template("view.html", res=res)
-    # #return render_template("view.html")
+    return render_template("view.html")
     # return render_template("view.html")
 
 
