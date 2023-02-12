@@ -12,11 +12,19 @@
     <center>
             <p><font size="+2">Please Upload a File and Click Submit:</font></p>
 
-            <form action="/action_page.php">
-            <input type="file" id="myFile" name="filename">
-            <input type="submit">
-            </form>
+        <!-- <form action="/action_page.php"> -->
+        <form action="/upload_file" method = "get">
+            <input type="file"  id="file" name="file" value = 'files'>
+            <input type="submit" name = "submit" value = "submit">
+
+          
+           
+        </form>
+        
+         
     </center>
+
+
     
     </body>
 </html>
