@@ -152,7 +152,7 @@ def on_press(key):
                 synthesizer.stop()
                     
     elif key == keyboard.Key.left:
-        synthesizer.say("Welcome. Please press shift to begin request. To read a summary, say read news or read research, followed by article name. To search for articles, say search news or search research, followed by topic. To repeat these instructions, press the left arrow key.") 
+        synthesizer.say("Welcome to Word Play. Please press shift to begin request. To read a summary, say read news or read research, followed by article name. To search for articles, say search news or search research, followed by topic. To repeat these instructions, press the left arrow key.") 
         synthesizer.runAndWait() 
         synthesizer.stop()
 
