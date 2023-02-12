@@ -1,6 +1,5 @@
 import time
 from flask import Flask, render_template, request, redirect
-# from tkinter import Tk,Label
 from pynput import mouse
 from pynput import keyboard
 from pynput.keyboard import Key, Listener
@@ -12,8 +11,7 @@ app = Flask(__name__)
 r = sr.Recognizer()
 
 def on_press(key):
-    #print('{0} pressed'.format(
-        #key))
+
     print("Key noticed")
     check_key(key)
     with sr.Microphone() as source:
