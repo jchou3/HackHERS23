@@ -39,4 +39,4 @@ def get_title(blurb):
         model = "ef167f8e-a5f8-4c50-988a-fa6937ef7338-ft",
         prompt = prompt
     )
-    return response
+    return response.generations[0].text

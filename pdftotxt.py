@@ -40,7 +40,7 @@ def read_and_interpret_pdf(pdf):
         split3 = split[2].partition("Introduction\n")
         summary = split3[0]
         
-        title = n.get_title(text)
+        title = n.get_title(split[0])
         split = title.partition("\n")
         title = split[0]
         topic = n.classify_research(title)

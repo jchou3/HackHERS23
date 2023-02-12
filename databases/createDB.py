@@ -15,10 +15,9 @@ sql_command = """CREATE TABLE `article` (
   `Topic` VARCHAR(50) NOT NULL,
   PRIMARY KEY (`Title`))"""
 
-sql_command2 = '''INSERT INTO article VALUES(?, ?, ?)'''
-values = 'OWKR', 'testing', 'tester'
+
 crsr.execute(sql_command)
-crsr.execute(sql_command2, values)
+
 #print(crsr.fetchall())
 #print(sqlite3.version)
 #print(sqlite3.sqlite_version)

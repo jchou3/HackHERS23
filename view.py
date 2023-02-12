@@ -44,7 +44,7 @@ def getSummary(type, title):
     if type == "news":
         cur.execute("SELECT * FROM News")
     else:
-        cur.execute("SELECT * FROM Research")
+        cur.execute("SELECT * FROM article")
     data = cur.fetchall()
 
     match = ""
@@ -72,7 +72,7 @@ def getTopics(type, topic):
     if type == "news":
         cur.execute("SELECT * FROM News")
     else:
-        cur.execute("SELECT * FROM Research")
+        cur.execute("SELECT * FROM article")
     data = cur.fetchall()
 
     titles = []
@@ -180,8 +180,10 @@ def home():
     connection = sqlite3.connect("data.db")
     cur = connection.cursor()
     cur.execute("SELECT * FROM News")
-    data = cur.fetchall()
-    return render_template("view.html", data = data)
+    news = cur.fetchall()
+    cur.execute("SELECT * FROM article")
+    res = cur.fetchall()
+    return render_template("view.html", news = news, res= res)
 
 
 def allowed_file(filename):
@@ -215,6 +217,7 @@ def upload_file():
             #                         filename=filename))
             path = find_file(filename, "uploads")
             info = ptt.read_and_interpret_pdf(path[0])
+            print(info)
             connection = sqlite3.connect("data.db")
             crsr = connection.cursor()
             sql_command2 = '''INSERT INTO article VALUES(?, ?, ?)'''
