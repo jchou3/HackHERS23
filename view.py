@@ -126,8 +126,7 @@ def upload_file():
     # f.save(file_path)
     # print(file)
     # print(os.path.exists(file))
-    selectedFile = view.getElementById('file').files[0]
-    ptt.read_and_interpret_pdf(selectedFile)
+    
     return render_template("view.html")
 
 if __name__ == "__main__":

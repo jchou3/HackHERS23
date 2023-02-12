@@ -1,0 +1,25 @@
+{
+  "name": "hackhers23",
+  "version": "1.0.0",
+  "description": "HackHERS submission 2023",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jchou3/HackHERS23.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jchou3/HackHERS23/issues"
+  },
+  "homepage": "https://github.com/jchou3/HackHERS23#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "express-fileupload": "^1.4.0",
+    "pdf-parse": "^1.1.1"
+  }
+}

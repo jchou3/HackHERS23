@@ -13,13 +13,33 @@
             <p><font size="+2">Please Upload a File and Click Submit:</font></p>
 
         <!-- <form action="/action_page.php"> -->
-        <form action="/upload_file" method = "get">
-            <input type="file"  id="file" name="file" value = 'files'>
-            <input type="submit" name = "submit" value = "submit">
+        <!-- <form action="/upload_file" method = "get"> -->
 
+            <input type="file"  id="inpFile" name="file" value = 'files'>
+            <input type="submit" name = "submit" value = "submit">
+            <script>
+                const inpFile = document.getElementById("inpFile");
+                const btnSubmit = document.getElementById("btnSubmit");
+                var text = '';
+                console.log("wowo");
+                btnSubmit.addEventListener("click", () => {
+                    const formData = new FormData();
+                    formData.append("pdfFile", inpFile.files[0]);
+                    fetch("/extract-text", {
+                        method: "post", 
+                        body:formData
+                    }).then(response => {
+                        return response.text();
+                    }).then(extractedText => {
+                        text = extractedText;
+                    });
+                });
+
+                console.log(text);
+            </script>
           
            
-        </form>
+        <!-- </form> -->
         
          
     </center>
