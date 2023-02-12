@@ -12,3 +12,6 @@ for i in res:
     print(crsr.fetchone())
     connection.commit()
     connection.close()
+
+#try DESCRIBE news
+#
