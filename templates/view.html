@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title> unnamed proj. </title>
+        <title> Word Play </title>
         <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
         <!-- <link rel="stylesheet" type="text/css" href="../static/styles.css"> -->
 
     </head>
     <body>
             <div class="welcome">
-                <h1>Welcome to Unnamed Project</h1>
+                <h1>Welcome to Word Play!</h1>
             </div>
             <div class="waveWrapper waveAnimation">
                 <div class="waveWrapperInner bgTop">
@@ -28,7 +28,7 @@
                  <form action="/action_page.php">                    
                     <!-- <input type="file"  input id="inpFile" name="file" value = 'files'> -->
                     </form>
-                <form enctype="multipart/form-data" action="/upload_file" method = "post">
+                <form class="fileform" enctype="multipart/form-data" action="/upload_file" method = "post">
                     <input type="file"  input id="file" name="file" value = 'files'>
 
                     <input type="submit" id="submit_button" name = "submit" value = "submit">
@@ -51,10 +51,10 @@
                     <thead>
                         <tr class="filters">
                             <!-- 1, 3, 2, 4 -->
-                            <th style="width: 30vw"><input type="text" id="titleInput" onkeyup="myTitle()" placeholder="Search Title"></th> 
-                            <th style = "width: 40vw"><input type="text" id="sumInput" onkeyup="mySummaries()" placeholder="Summary"></th>
-                            <th style = "width: 15vw"><input type="text" id = "topicInput" onkeyup="myTopic()" placeholder="Search Topic"></th>
-                            <th style = "width: 15vw"><input type="text" id = "typeInput" onkeyup="myText()" placeholder="Search Type"></th>
+                            <th style = "width: 30%"><input type="text" id="titleInput" onkeyup="myTitle()" placeholder="Search Title"></th> 
+                            <th style = "width: 40%"><input type="text" id="sumInput" onkeyup="mySummaries()" placeholder="Summary"></th>
+                            <th style = "width: 15%"><input type="text" id = "topicInput" onkeyup="myTopic()" placeholder="Search Topic"></th>
+                            <th style = "width: 15%"><input type="text" id = "typeInput" onkeyup="myText()" placeholder="Search Type"></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -155,22 +155,5 @@
                     </script>
 
             </div>
-
-
-    <table>
-        <tr>
-            <th>Title</th>
-            <th>Topic</th>
-            <th>Summary</th>
-        </tr>
-        {% for i in res %}
-            <tr>
-                <th>{{i[1]}}</th>
-                <th>{{i[2]}}</th>
-                <th>{{i[3]}}</th>
-            </tr>
-        {% endfor %}
-    </table>
-    
     </body>
 </html>
