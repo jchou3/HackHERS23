@@ -5,6 +5,7 @@ from pynput import keyboard
 from pynput.keyboard import Key, Listener
 from threading import Thread
 from time import sleep
+from query import addArticle
 import speech_recognition as sr
 import pyttsx3
 import sqlite3
@@ -152,7 +153,8 @@ def upload_file():
             # return redirect(url_for('uploaded_file',
             #                         filename=filename))
             path = find_file(filename, "uploads")
-            ptt.read_and_interpret_pdf(path[0])
+            info = ptt.read_and_interpret_pdf(path[0])
+            addArticle(info)
             return redirect('http://127.0.0.1:8000')
         
 

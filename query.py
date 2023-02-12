@@ -1,17 +1,13 @@
 import sqlite3
 
-connection = sqlite3.connect("databases/data.db")
+connection = sqlite3.connect("data.db")
 
 crsr = connection.cursor()
 
-res = crsr.execute("""SELECT *  
-                FROM News
-                """)
+def addArticle(array):
+    sql_command2 = '''INSERT INTO article VALUES(?, ?, ?)'''
+    values = array[0], array[1], array[2]
+    crsr.execute(sql_command2, values)
 
-for i in res: 
-    print(crsr.fetchone())
-    connection.commit()
-    connection.close()
-
-#try DESCRIBE news
-#
+connection.commit()
+connection.close()
