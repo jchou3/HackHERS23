@@ -24,20 +24,25 @@ def on_press(key):
 
     print("Key noticed")
     check_key(key)
-    with sr.Microphone() as source:
+    while (True):
+        with sr.Microphone() as source:
         # read the audio data from the default microphone
         #print("Speak now, please.")
-        time.sleep(6)
-
-        audio_data = r.record(source, duration=6)
-        print("Recognizing...")
-        # convert speech to text
-        text = r.recognize_google(audio_data)
-        print(text)  
+            audio_data = r.record(source, duration=6)
+            print("Recognizing...")
+            # convert speech to text
+            text = r.recognize_google(audio_data)
+            print(text)
+            if ("read" not in text):
+                synthesizer.say("Unable to recognized article. Please hold the space bar and say “read” followed by the article’s name you want to summarize.") 
+                synthesizer.runAndWait() 
+                synthesizer.stop()
+            else:
+                return text
 
     time.sleep(8)
     
-    
+
 def on_release(key):
     #print('{0} release'.for8mat(
        # key))
