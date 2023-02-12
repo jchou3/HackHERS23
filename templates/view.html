@@ -8,11 +8,39 @@
         <center>
         <p><font size="+2">Please Upload a File and Click Submit:</font></p>
 
-        <form action="/action_page.php">
-          <input type="file" id="myFile" name="filename">
-          <input type="submit">
+        <!-- <form action="/action_page.php"> -->
+        <form action="/upload_file" method = "get">
+            <input type="file"  id="file" value = 'files'>
+            <input type="button" id = "btnSubmit" name = "submit" value = "submit">
+            <script>
+                const btnSubmit = document.getElementById("btnSubmit");
+                const file = document.getElementById("file");
+                String text;
+                btnSubmit.addEventListener("click", ()=>{
+                    const formData = new FormData();
+                    formdata.append("pdfFile", file.files[0]);
+
+                    fetch("/extract-text", {
+                        method: "post:"
+                        body: formData
+                    }
+                ).then(response=> {
+                    return response.text();
+                }).then(extractedText => {
+                    text  = extractedText
+                });
+            });
+
+            </script>    
+
+          
+           
         </form>
+        
+         
     </center>
+
+
 
     <table>
         <tr>

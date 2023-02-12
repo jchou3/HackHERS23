@@ -8,11 +8,17 @@ from time import sleep
 import speech_recognition as sr
 import pyttsx3
 import sqlite3
+import pdftotxt as ptt
+#from bs4 import BeautifulSoup as s
+import requests
+import os
+from werkzeug.utils import secure_filename
+
 
 synthesizer = pyttsx3.init()
 
 rate = synthesizer.getProperty('rate')
-synthesizer.setProperty('rate', 160)
+synthesizer.setProperty('rate', 175)
 
 app = Flask(__name__)
 r = sr.Recognizer()
@@ -30,6 +36,7 @@ synthesizer.stop()
 def on_press(key):
     print("Key noticed")
     check_key(key)
+
     with sr.Microphone() as source:
         # read the audio data from the default microphone
         #print("Speak now, please.")
@@ -96,19 +103,19 @@ def keyboardListener():
 def home():
     thr = Thread(target=keyboardListener, args=[])
     thr.start() 
-    #below is my query stuff 
-    connection = sqlite3.connect("databases/data.db")
-    crsr = connection.cursor()
-    query = "SELECT * FROM News WHERE"
-    crsr.execute(query)
-    res = crsr.fetchall()
-    for i in res:
-        print(i[2])
-    connection.commit()
-    connection.close()
-    return render_template("view.html", res=res)
-    #return render_template("view.html")
-    return render_template("view.html")
+    # #below is my query stuff 
+    # connection = sqlite3.connect("databases/data.db")
+    # crsr = connection.cursor()
+    # query = "SELECT * FROM News WHERE"
+    # crsr.execute(query)
+    # res = crsr.fetchall()
+    # for i in res:
+    #     print(i[2])
+    # connection.commit()
+    # connection.close()
+    # return render_template("view.html", res=res)
+    # #return render_template("view.html")
+    # return render_template("view.html")
 
 
 
