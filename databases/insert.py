@@ -1,7 +1,7 @@
 import sqlite3
 import pandas as pd
 
-connection = sqlite3.connect("databases/data.db")
+connection = sqlite3.connect("data.db")
 
 data = pd.read_csv("databases/News.csv")
 #print(data.columns)
@@ -13,9 +13,9 @@ data.to_sql(
 
 crsr = connection.cursor()
 
-crsr.execute("""SELECT Title  
-                FROM News
-                """)
+crsr.execute('''SELECT (index) FROM article
+                ''')
+
 print(crsr.fetchone())
 
 connection.commit()
