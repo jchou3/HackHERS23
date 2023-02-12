@@ -28,7 +28,7 @@
                  <form action="/action_page.php">                    
                     <!-- <input type="file"  input id="inpFile" name="file" value = 'files'> -->
                     </form>
-                <form enctype="multipart/form-data" action="/upload_file" method = "post">
+                <form class="fileform" enctype="multipart/form-data" action="/upload_file" method = "post">
                     <input type="file"  input id="file" name="file" value = 'files'>
 
                     <input type="submit" id="submit_button" name = "submit" value = "submit">
@@ -155,22 +155,5 @@
                     </script>
 
             </div>
-
-
-    <table>
-        <tr>
-            <th>Title</th>
-            <th>Topic</th>
-            <th>Summary</th>
-        </tr>
-        {% for i in res %}
-            <tr>
-                <th>{{i[1]}}</th>
-                <th>{{i[2]}}</th>
-                <th>{{i[3]}}</th>
-            </tr>
-        {% endfor %}
-    </table>
-    
     </body>
 </html>

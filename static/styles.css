@@ -205,6 +205,11 @@ td{
     animation: move_wave 15s linear infinite;
 }
 
+.fileform {
+    display: flex;
+    flex-direction: column;
+    padding-top: 4px;
+}
 
 .submit {
     border: 10px dashed #bfdae2;
@@ -228,7 +233,7 @@ header {
     text-align: center;
 }
 
-#inpFile, #submit_button {
+#file, #submit_button {
     padding: 10px 10px;
     font-size: 10px;
     font-weight: 500;

@@ -39,7 +39,7 @@ def getSummary(type, title):
     if type != "news" and type != "research":
         return None
     
-    connection = sqlite3.connect("databases/data.db")
+    connection = sqlite3.connect("data.db")
     cur = connection.cursor()
     if type == "news":
         cur.execute("SELECT * FROM News")
@@ -67,7 +67,7 @@ def getTopics(type, topic):
     if type != "news" and type != "research":
         return None
 
-    connection = sqlite3.connect("databases/data.db")
+    connection = sqlite3.connect("data.db")
     cur = connection.cursor()
     if type == "news":
         cur.execute("SELECT * FROM News")
@@ -177,7 +177,7 @@ def keyboardListener():
 def home():
     thr = Thread(target=keyboardListener, args=[])
     thr.start() 
-    connection = sqlite3.connect("databases/data.db")
+    connection = sqlite3.connect("data.db")
     cur = connection.cursor()
     cur.execute("SELECT * FROM News")
     data = cur.fetchall()
