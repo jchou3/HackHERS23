@@ -3,26 +3,33 @@
     <head>
         <title> unnamed proj. </title>
         <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+        <!-- <link rel="stylesheet" type="text/css" href="../static/styles.css"> -->
+
     </head>
     <body>
             <div class="welcome">
                 <h1>Welcome to Unnamed Project</h1>
-                <h1>Welcome to Unnamed Project</h1>
             </div>
-    <center>
-            <p><font size="+2">Please Upload a File and Click Submit:</font></p>
+            <div class="waveWrapper waveAnimation">
+                <div class="waveWrapperInner bgTop">
+                  <div class="wave waveTop" style="background-image: url('http://front-end-noobs.com/jecko/img/wave-top.png')"></div>
+                </div>
+                <div class="waveWrapperInner bgMiddle">
+                  <div class="wave waveMiddle" style="background-image: url('http://front-end-noobs.com/jecko/img/wave-mid.png')"></div>
+                </div>
+                <div class="waveWrapperInner bgBottom">
+                  <div class="wave waveBottom" style="background-image: url('http://front-end-noobs.com/jecko/img/wave-bot.png')"></div>
+                </div>
+            </div>
 
+    <div class="submit">
+        <p><font size="+2">Please Upload a File and Click Submit:</font></p>
         <!-- <form action="/action_page.php"> -->
         <form action="/upload_file" method = "get">
             <input type="file"  id="file" name="file" value = 'files'>
-            <input type="submit" name = "submit" value = "submit">
-
-          
-           
+            <input type="submit" name = "submit" value = "submit">   
         </form>
-        
-         
-    </center>
+    </div>
 
 
     

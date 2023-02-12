@@ -50,42 +50,41 @@ def find_words_after_search(s):
 
 def on_press(key):
 
-    print("Key noticed")
-    check_key(key)
-    with sr.Microphone() as source:
-        # read the audio data from the default microphone
-        #print("Speak now, please.")
-        try:
-            print("Recognizing...")
-            audio_data = r.record(source, duration=10)
-            # convert speech to text
-            text = r.recognize_google(audio_data)
-            print(text)
-            text = text.lower()
-            
-            if ("read" in text):
-                type, article_name, topic = find_words_after_read(text)
-                print(type)
-                print(article_name)
-                print(topic)
-            elif ("search" in text):
-                type , topic = find_words_after_search(text)
-                print(type)
-                print(topic)
-            else:
-                synthesizer.say("Unable to find article. Please try again") 
-                synthesizer.runAndWait() 
-                synthesizer.stop()
+    # check_key(key)
+    if key == keyboard.Key.space:
+        with sr.Microphone() as source:
+            # read the audio data from the default microphone
+            #print("Speak now, please.")
+            try:
+                print("Recognizing...")
+                audio_data = r.record(source, duration=10)
+                # convert speech to text
+                text = r.recognize_google(audio_data)
+                print(text)
+                text = text.lower()
                 
-        except:
-            print("An exception occurred")
+                if ("read" in text):
+                    type, article_name, topic = find_words_after_read(text)
+                    print(type)
+                    print(article_name)
+                    print(topic)
+                elif ("search" in text):
+                    type , topic = find_words_after_search(text)
+                    print(type)
+                    print(topic)
+                else:
+                    synthesizer.say("Unable to find article. Please try again") 
+                    synthesizer.runAndWait() 
+                    synthesizer.stop()
+                    
+            except:
+                print("An exception occurred")
                 
 def on_release(key):
     #print('{0} release'.for8mat(
        # key))
     # if key == Key.esc:
          # Stop listener
-    print("released")
     return True
 
 def check_key(key):

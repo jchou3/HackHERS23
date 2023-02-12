@@ -1,0 +1,121 @@
+@import url("https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900");
+
+* {
+    box-sizing: border-box;
+    font-family: "Poppings", sans-serif;
+}
+
+body {
+    display: flex;
+    background: rgb(24,128,156);
+    background: linear-gradient(0deg, rgba(24,128,156,1) 0%, rgba(159,211,231,1) 100%);
+}
+
+
+.submit {
+    z-index:50;
+    position: absolute;
+    width: 10vw;
+    bottom: 25%;
+    left: 45%;
+}
+
+.welcome {
+    position: absolute;
+    width: 100vw;
+    top: 20%;
+    left: 100%;
+    transform: translate(-50%, -50%);
+    z-index: 50;
+}
+
+.welcome h1 {
+    font-size: 5vw;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    border-radius: 20px;
+    color: #a3d4eb;
+    text-shadow: 0 0 5px #a3d4eb, 0 0 10px #a3d4eb;
+}
+
+
+
+
+@keyframes title{
+    0%,
+    100% {
+        clip-path: polygon( 0% 45%, 16% 44%, 33% 50%, 54% 60%, 70% 61%, 84% 59%, 100% 52%, 100% 100%, 0% 100%);
+    }
+    50% {
+        clip-path: polygon( 0% 68%, 15% 65%, 34% 66%, 51% 62%, 67% 50%, 84% 45%, 100% 46%, 100% 100%, 0% 100%);
+    }
+}
+@keyframes move_wave {
+    0% {
+        transform: translateX(0) translateZ(0) scaleY(1)
+    }
+    50% {
+        transform: translateX(-25%) translateZ(0) scaleY(0.55)
+    }
+    100% {
+        transform: translateX(-50%) translateZ(0) scaleY(1)
+    }
+}
+.waveWrapper {
+    overflow: hidden;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    margin: auto;
+}
+.waveWrapperInner {
+    position: absolute;
+    width: 100%;
+    overflow: hidden;
+    height: 100%;
+    bottom: -1px;
+    background-image: linear-gradient(to top, #39afee 20%,  #03477a 80%);
+}
+.bgTop {
+    z-index: 15;
+    opacity: 0.5;
+}
+.bgMiddle {
+    z-index: 10;
+    opacity: 0.75;
+}
+.bgBottom {
+    z-index: 5;
+}
+.wave {
+    position: absolute;
+    left: 0;
+    width: 200%;
+    height: 100%;
+    background-repeat: repeat no-repeat;
+    background-position: 0 bottom;
+    transform-origin: center bottom;
+}
+.waveTop {
+    background-size: 50% 100px;
+}
+.waveAnimation .waveTop {
+  animation: move-wave 3s;
+   -webkit-animation: move-wave 3s;
+   -webkit-animation-delay: 1s;
+   animation-delay: 1s;
+}
+.waveMiddle {
+    background-size: 50% 120px;
+}
+.waveAnimation .waveMiddle {
+    animation: move_wave 10s linear infinite;
+}
+.waveBottom {
+    background-size: 50% 100px;
+}
+.waveAnimation .waveBottom {
+    animation: move_wave 15s linear infinite;
+}
