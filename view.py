@@ -7,6 +7,7 @@ from threading import Thread
 from time import sleep
 import speech_recognition as sr
 import pyttsx3
+import sqlite3
 
 synthesizer = pyttsx3.init()
 
@@ -21,7 +22,6 @@ synthesizer.runAndWait()
 synthesizer.stop()
 
 def on_press(key):
-
     print("Key noticed")
     check_key(key)
     while (True):
@@ -42,8 +42,7 @@ def on_press(key):
                     decipher(text)
                     return
             except:
-                print("An exception occurred")
-                
+                print("An exception occurred")               
 
     
 def decipher(text):
@@ -76,10 +75,21 @@ def keyboardListener():
 def home():
     thr = Thread(target=keyboardListener, args=[])
     thr.start() 
-    return render_template("view.html")
+    #below is my query stuff 
+    connection = sqlite3.connect("databases/data.db")
+    crsr = connection.cursor()
+    query = "SELECT * FROM News WHERE"
+    crsr.execute(query)
+    res = crsr.fetchall()
+    for i in res:
+        print(i[2])
+    connection.commit()
+    connection.close()
+    return render_template("view.html", res=res)
+    #return render_template("view.html")
 
 if __name__ == "__main__":
     app.run(debug=True, port=8000)
 
-def query(keyWords):
-    return 1
+
+

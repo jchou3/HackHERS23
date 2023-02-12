@@ -4,7 +4,7 @@ import pandas as pd
 connection = sqlite3.connect("databases/data.db")
 
 data = pd.read_csv("databases/News.csv")
-
+#print(data.columns)
 data.to_sql(
     'News',
     connection,
@@ -13,9 +13,9 @@ data.to_sql(
 
 crsr = connection.cursor()
 
-crsr.execute("""SELECT *  
+crsr.execute("""SELECT Title  
                 FROM News
-                LIMIT 5""")
+                """)
 print(crsr.fetchone())
 
 connection.commit()
