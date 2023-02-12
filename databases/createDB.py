@@ -1,7 +1,7 @@
 #ignore this for now, it is just a reference 
 import sqlite3
 
-connection = sqlite3.connect("articles.db")
+connection = sqlite3.connect("data.db")
 
 crsr = connection.cursor()
  
@@ -10,20 +10,15 @@ crsr = connection.cursor()
 print("Connected to the database")
  
 sql_command = """CREATE TABLE `article` (
-  `articleID` INT NOT NULL,
-  `title` VARCHAR(100) NOT NULL,
-  `summary` VARCHAR(1000) NOT NULL,
-  `topic` VARCHAR(50) NOT NULL,
-  `type` VARCHAR(50) NOT NULL,
-  PRIMARY KEY (`articleID`))"""
+  `Title` VARCHAR(100) NOT NULL,
+  `Summary` VARCHAR(1000) NOT NULL,
+  `Topic` VARCHAR(50) NOT NULL,
+  PRIMARY KEY (`Title`))"""
 
-sql_command2 = """CREATE TABLE `full_text` (
-  `articleID` INT NOT NULL,
-  `text` TEXT(2000) NOT NULL,
-  PRIMARY KEY (`articleID`))"""
-  
+sql_command2 = '''INSERT INTO article VALUES(?, ?, ?)'''
+values = 'OWKR', 'testing', 'tester'
 crsr.execute(sql_command)
-crsr.execute(sql_command2)
+crsr.execute(sql_command2, values)
 #print(crsr.fetchall())
 #print(sqlite3.version)
 #print(sqlite3.sqlite_version)

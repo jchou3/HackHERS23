@@ -22,36 +22,23 @@
                 </div>
             </div>
 
+        <!-- <form action="/action_page.php"> --> 
             <div class="submit">
                 <header>Please Upload a File and Click Submit:</header>
-                <!-- <form action="/action_page.php"> -->
-                <!-- <form action="/upload_file" method = "get"> -->
+                 <form action="/action_page.php">                    
+                    <!-- <input type="file"  input id="inpFile" name="file" value = 'files'> -->
+                    </form>
+                <form enctype="multipart/form-data" action="/upload_file" method = "post">
+                    <input type="file"  input id="file" name="file" value = 'files'>
 
-                    <input type="file"  id="inpFile" name="file" value = 'files'>
                     <input type="submit" id="submit_button" name = "submit" value = "submit">
-                    <script>
-                        const inpFile = document.getElementById("inpFile");
-                        const btnSubmit = document.getElementById("btnSubmit");
-                        var text = '';
-                        console.log("wowo");
-                        btnSubmit.addEventListener("click", () => {
-                            const formData = new FormData();
-                            formData.append("pdfFile", inpFile.files[0]);
-                            fetch("/extract-text", {
-                                method: "post", 
-                                body:formData
-                            }).then(response => {
-                                return response.text();
-                            }).then(extractedText => {
-                                text = extractedText;
-                            });
-                        });
-
-                        console.log(text);
-                    </script>
+                    <!-- <a href="{{ url_for('static',filename=path)}}">
+                        <button class="btn" name = submit>Submit</button>
+                    </a> -->
+                   
                 
                 
-                <!-- </form> -->
+                </form> 
             </div>
             
             <div class="data">
@@ -169,6 +156,21 @@
 
             </div>
 
+
+    <table>
+        <tr>
+            <th>Title</th>
+            <th>Topic</th>
+            <th>Summary</th>
+        </tr>
+        {% for i in res %}
+            <tr>
+                <th>{{i[1]}}</th>
+                <th>{{i[2]}}</th>
+                <th>{{i[3]}}</th>
+            </tr>
+        {% endfor %}
+    </table>
     
     </body>
 </html>
