@@ -16,9 +16,10 @@ synthesizer.setProperty('rate', 175)
 app = Flask(__name__)
 r = sr.Recognizer()
 
-synthesizer.say("Hello, Welcome. Please hold the space bar and say “read” followed by the article’s name you want to summarize.") 
-synthesizer.runAndWait() 
-synthesizer.stop()
+def intro():
+    synthesizer.say("Hello, Welcome. Please press the space bar and say read news or read research followed by the article name you want to summarize and its topic.") 
+    synthesizer.runAndWait() 
+    synthesizer.stop()
 
 def on_press(key):
 
@@ -60,7 +61,6 @@ def on_release(key):
     print("released")
     return True
 
-
 def check_key(key):
     if key == keyboard.Key.space: 
         print("Space pressed")
@@ -74,8 +74,13 @@ def keyboardListener():
 
 @app.route("/")
 def home():
+    intro
     thr = Thread(target=keyboardListener, args=[])
     thr.start() 
+    synthesizer.say("poopoopeepee")
+    synthesizer.runAndWait() 
+    synthesizer.stop()
+       
     return render_template("view.html")
 
 if __name__ == "__main__":
