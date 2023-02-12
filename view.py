@@ -28,20 +28,29 @@ def on_press(key):
         with sr.Microphone() as source:
         # read the audio data from the default microphone
         #print("Speak now, please.")
-            audio_data = r.record(source, duration=6)
-            print("Recognizing...")
-            # convert speech to text
-            text = r.recognize_google(audio_data)
-            print(text)
-            if ("read" not in text):
-                synthesizer.say("Unable to recognized article. Please hold the space bar and say “read” followed by the article’s name you want to summarize.") 
-                synthesizer.runAndWait() 
-                synthesizer.stop()
-            else:
-                return text
+            try:
+                audio_data = r.record(source, duration=6)
+                print("Recognizing...")
+                # convert speech to text
+                text = r.recognize_google(audio_data)
+                print(text)
+                if ("read" not in text):
+                    synthesizer.say("Unable to recognized article. Please hold the space bar and say “read” followed by the article’s name you want to summarize.") 
+                    synthesizer.runAndWait() 
+                    synthesizer.stop()
+                else:
+                    decipher(text)
+                    return
+            except:
+                print("An exception occurred")
+                
 
-    time.sleep(8)
     
+def decipher(text):
+    synthesizer.say("poopoopeepee")
+    synthesizer.runAndWait() 
+    synthesizer.stop()
+       
 
 def on_release(key):
     #print('{0} release'.for8mat(
@@ -71,3 +80,6 @@ def home():
 
 if __name__ == "__main__":
     app.run(debug=True, port=8000)
+
+def query(keyWords):
+    return 1
