@@ -1,3 +1,4 @@
+import time
 from flask import Flask, render_template, request, redirect
 # from tkinter import Tk,Label
 from pynput import mouse
@@ -18,18 +19,23 @@ def on_press(key):
     with sr.Microphone() as source:
         # read the audio data from the default microphone
         print("Speak now, please.")
-        audio_data = r.record(source, duration=8)
+        audio_data = r.record(source, duration=6)
         print("Recognizing...")
         # convert speech to text
         text = r.recognize_google(audio_data)
-        print(text)
+        print(text)  
 
+    
+    time.sleep(8)
+    
+    
 def on_release(key):
-    #print('{0} release'.format(
+    #print('{0} release'.for8mat(
        # key))
     # if key == Key.esc:
-        # Stop listener
+         # Stop listener
     print("released")
+    return True
 
 
 def check_key(key):
