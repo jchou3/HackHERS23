@@ -1,3 +1,4 @@
+#ignore this for now, it is just a reference 
 import sqlite3
 
 connection = sqlite3.connect("articles.db")
