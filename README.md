@@ -8,7 +8,8 @@ To run our program:
   Run view.py and open the local host given in the terminal
   
 To use the website:
-  Scroll down to view available articles in the database.
   Click on the left arrow key to hear verbal instructions.
+  Scroll down to view available articles in the database.
+  
   
   
