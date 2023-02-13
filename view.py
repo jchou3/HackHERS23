@@ -39,23 +39,31 @@ def getSummary(type, title):
     if type != "news" and type != "research":
         return None
     
-    connection = sqlite3.connect("data.db")
-    cur = connection.cursor()
-    if type == "news":
-        cur.execute("SELECT * FROM News")
-    else:
-        cur.execute("SELECT * FROM article")
-    data = cur.fetchall()
-
     match = ""
 
     for word in title:
         match += word
         match += " "
 
-    for item in data:
-        if match in item[1].lower():
-            return item[3]
+    match = match.rstrip()
+
+    connection = sqlite3.connect("data.db")
+    cur = connection.cursor()
+    if type == "news":
+        cur.execute("SELECT * FROM News")
+        data = cur.fetchall()
+        for item in data:
+            if match in item[1].lower():
+                return item[3]
+    else:
+        cur.execute("SELECT * FROM article")
+        data = cur.fetchall()
+        for item in data:
+            if match in item[0].lower():
+                return item[1]
+    
+
+    
 
 
     return None
@@ -69,18 +77,19 @@ def getTopics(type, topic):
 
     connection = sqlite3.connect("data.db")
     cur = connection.cursor()
+    titles = []
     if type == "news":
         cur.execute("SELECT * FROM News")
+        data = cur.fetchall()
+        for item in data:
+            if topic in item[2].lower():
+                titles.append(item[1])
     else:
         cur.execute("SELECT * FROM article")
-    data = cur.fetchall()
-
-    titles = []
-
-    for item in data:
-        if topic in item[2].lower():
-            titles.append(item[1])
-
+        data = cur.fetchall()
+        for item in data:
+            if topic in item[2].lower():
+                titles.append(item[0])
     return titles
 
 def find_words_after_read(s):
@@ -163,11 +172,10 @@ def on_release(key):
        # key))
     # if key == Key.esc:
          # Stop listener
-    return True
+    pass
 
 
 def keyboardListener():
-    print("Help")
     listener = keyboard.Listener(
         on_press=on_press,
         on_release=on_release)
