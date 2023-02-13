@@ -70,7 +70,6 @@ def getSummary(type, title):
 
 
 def getTopics(type, topic):
-    print("in method")
 
     if type != "news" and type != "research":
         return None
@@ -201,7 +200,6 @@ def allowed_file(filename):
 
 @app.route("/upload_file", methods = ['GET', 'POST'])
 def upload_file():
-    print("ugh")
     if request.method == 'POST':
         print("posint")
         # check if the post request has the file part
@@ -236,7 +234,6 @@ def upload_file():
             return redirect('http://127.0.0.1:8000')
         
 
-        #print(file)
     return ''
 
 from flask import send_from_directory
